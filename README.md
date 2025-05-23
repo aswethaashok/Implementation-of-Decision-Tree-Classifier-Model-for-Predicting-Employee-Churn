@@ -8,22 +8,74 @@ To write a program to implement the Decision Tree Classifier Model for Predictin
 2. Anaconda – Python 3.7 Installation / Jupyter notebook
 
 ## Algorithm
-1. 
-2. 
-3. 
-4. 
+
+import pandas module and import the required data set.
+Find the null values and count them.
+Count number of left values.
+From sklearn import LabelEncoder to convert string values to numerical values.
+From sklearn.model_selection import train_test_split.
+Assign the train dataset and test dataset.
+From sklearn.tree import DecisionTreeClassifier.
+Use criteria as entropy.
+From sklearn import metrics.
+Find the accuracy of our model and predict the require values.
 
 ## Program:
 ```
 /*
 Program to implement the Decision Tree Classifier Model for Predicting Employee Churn.
-Developed by: 
-RegisterNumber:  
+Developed by: SWETHA A
+RegisterNumber: 212223220114
 */
+```
+```
+import pandas as pd
+
+data = pd.read_csv("Employee.csv")
+
+data.head()
+
+data.info()
+
+data.isnull().sum()
+
+data["left"].value_counts()
+
+from sklearn.preprocessing import LabelEncoder
+le = LabelEncoder()
+
+data["salary"] = le.fit_transform(data["salary"])
+data.head()
+
+x=data[["satisfaction_level","last_evaluation","number_project", "average_montly_hours",
+"time_spend_company", "Work_accident","promotion_last_5years","salary"]]
+x.head()
+
+y = data["left"]
+
+from sklearn.model_selection import train_test_split
+x_train, x_test,y_train,y_test=train_test_split(x,y,test_size=0.2,random_state=100)
+
+from sklearn. tree import DecisionTreeClassifier
+dt=DecisionTreeClassifier(criterion="entropy")
+dt.fit(x_train,y_train)
+y_pred=dt. predict(x_test)
+
+from sklearn import metrics
+accuracy=metrics.accuracy_score(y_test,y_pred)
+
+accuracy
+dt.predict([[0.5,0.8,9,260, 6,0,1,2]])
 ```
 
 ## Output:
-![decision tree classifier model](sam.png)
+
+![Screenshot 2025-05-23 081011](https://github.com/user-attachments/assets/4bda7081-07e5-4d3a-b9bd-4faa46223742)
+
+![Screenshot 2025-05-23 081002](https://github.com/user-attachments/assets/44edfebc-84d6-49c5-9b6b-4740ef82e0a6)
+
+![Screenshot 2025-05-23 080953](https://github.com/user-attachments/assets/cee67def-1926-40a8-be67-ea5e2fdcb512)
+
 
 
 ## Result:
